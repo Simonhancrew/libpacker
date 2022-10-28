@@ -53,6 +53,14 @@ class Packer {
     }
   }
 
+  template<typename T>
+  void Push(T&& num) {
+    CheckeSize(sizeof(num), location_);
+    memcpy(&buffer_[0] + location_, &num, sizeof(num));
+    location_ += sizeof(num);
+  }
+
+
   void Push(uint16_t num) {
     CheckSize(sizeof(num), location_);
     memcpy(&buffer_[0] + location_, &num, sizeof(num));
@@ -68,3 +76,4 @@ class Packer {
 };
 
 }  // namespace pac
+
